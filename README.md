@@ -1,4 +1,4 @@
-## Connecting your EC2 Instance with an S3 Bucket in R as an IAM User*
+## Connecting your EC2 Instance with an S3 Bucket in R as an IAM User
 ### This code uses R packages
 
 #### Before utilizing, ensure you:
