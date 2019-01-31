@@ -1,0 +1,7 @@
+#AWS Immersion Day Tutorial
+
+#Start Demo
+install.packages("RCurl")
+library("RCurl") 
+data <- read.table(textConnection(getURL("https://cgiardata.s3-us-west-2.amazonaws.com/ccafs/amzn.csv")), sep=",", header=FALSE)
+head(data) #quick example of EC2 talking to S3 
