@@ -1,0 +1,92 @@
+##############################################
+###                                        ###
+###   Julia Knox's default R profile      ###
+###                                        ###
+###             knoxju@@gmail.com          ###
+###                                        ###
+##############################################      
+
+# set default CRAN mirror
+local({r <- getOption("repos")
+r["CRAN"] <- "https://cloud.r-project.org"
+options(repos=r)})
+
+
+#############
+## OPTIONS ##
+#############
+
+# Hello
+message("Hi Julia, welcome to R") #Change to your own personal greeting
+# Customise the R prompt that prefixes every command
+# (use " " for a blank prompt)
+options(prompt = ">")
+
+options(stringsAsFactors=FALSE)    # stringsAsFactors=HELLNO
+options(max.print=100)          
+options(scipen=10)                 # no scientific notation
+options(editor="vim")              # yeah
+options(warn = 2)                  # warnings are ererors
+options(useFancyQuotes = FALSE)    # optional
+options(menu.graphics=FALSE)       # no time for loading Tk 
+options(max.print=300)
+options(width = 80)
+# options(prompt="> ")
+# options(continue="... ")           # did you forget to close?!
+options(datatable.print.class=TRUE)
+options(datatable.print.keys=TRUE)
+
+utils::rc.settings(ipck=TRUE)      # tab complete package names
+
+sshhh <- function(a.package){
+  suppressWarnings(suppressPackageStartupMessages(
+    library(a.package, character.only=TRUE)))
+}
+
+auto.loads <-c("dplyr", "ggplot2") #add packages you want to load automatically 
+
+if(interactive()){
+  invisible(sapply(auto.loads, sshhh))
+}
+
+.env <- new.env()
+
+
+.env$unrowname <- function(x) {
+  rownames(x) <- NULL
+  x
+}
+
+.env$unfactor <- function(df){
+  id <- sapply(df, is.factor)
+  df[id] <- lapply(df[id], as.character)
+  df
+}
+
+attach(.env)
+
+# NoBaggage
+q <- function (save="no", ...) {
+  quit(save=save, ...)
+}
+
+
+#  .Rhistory dump
+.First <- function(){
+  if(interactive()){
+    library(utils)
+    timestamp(,prefix=paste("##------ [",getwd(),"] ",sep=""))
+    
+  }
+}
+
+.Last <- function(){
+  if(interactive()){
+    hist_file <- Sys.getenv("R_HISTFILE")
+    if(hist_file=="") hist_file <- "~/.Rhistory"
+    savehistory(hist_file)
+  }
+}
+
+
+message("\n*** Successfully loaded .Rprofile ***\n")
