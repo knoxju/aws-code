@@ -1,14 +1,14 @@
 ##############################################
 ###                                        ###
-###   Julia Knox's default R profile      ###
+###   Julia's default R profile            ###
 ###                                        ###
-###             knoxju@gmail.com          ###
+###             knoxju@gmail.com           ###
 ###                                        ###
 ##############################################      
 
 # set default CRAN mirror
 local({r <- getOption("repos")
-r["CRAN"] <- "https://cloud.r-project.org"
+r["CRAN"] <- "https://cloud.r-project.org" #I chose the cloud CRAN
 options(repos=r)})
 
 
@@ -43,7 +43,7 @@ sshhh <- function(a.package){
     library(a.package, character.only=TRUE)))
 }
 
-auto.loads <-c("dplyr", "ggplot2") #add packages you want to load automatically 
+auto.loads <-c("dplyr", "ggplot2", "aws.3", "aws.signature", "aws.ec2metadata", "XML", "tidyverse", "devtools", "githubinstall") #add packages you want to load automatically 
 
 if(interactive()){
   invisible(sapply(auto.loads, sshhh))
