@@ -4,3 +4,5 @@
 
 
 #### This repository was configured specifically for the needs the Baccarelli Lab. For more information about our AWS set-up, please visit our [GitHub Page](https://baccarellilab.github.io/). 
+
+##### Thanks @powdahound for the helpful quick [EC2 instance comparison guide](https://ec2instances.info/)
