@@ -1,0 +1,34 @@
+#MakeParallel Configurations for EC2 LINUX
+
+#MakeParallel performs autodetection to help in the efficient execution. When working with vCPUs on EC2 instances, we want to take advantage of all of them, and this helps.
+
+library(makeParallel)
+
+new <- tempdir()
+myoldscript <- system.file("example", package = "makeParallel")
+script <- file.path(new, "example")
+file.copy(myoldscript, script)
+
+#should return TRUE
+
+list.files(new)
+
+#should return "example"
+
+#Replace your serially compiled code with a parallel version automatically
+
+input <- parse(text = "
+    x <- list(a = 1:10, beta = exp(-3:3), logic = c(TRUE,FALSE,FALSE,TRUE))
+    m1 <- lapply(x, mean)
+    m2 <- list()
+    for(i in seq_along(x)) {
+        m2[[i]] = mean(x[[i]])
+    }
+    ")
+
+transformed <- makeParallel(input)
+
+
+#Transform object for both  for loop and  lapply to parallel::mclapply.
+
+#eference - [makeParallel](https://cran.r-project.org/web/packages/makeParallel/vignettes/concepts.html) 
