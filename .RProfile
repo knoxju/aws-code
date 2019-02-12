@@ -1,8 +1,8 @@
 ##############################################
 ###                                        ###
-###   Julia's default R profile            ###
+###   Julia's EC2-Specific R profile       ###
 ###                                        ###
-###             knoxju@gmail.com           ###
+###         knoxju@gmail.com               ###
 ###                                        ###
 ##############################################      
 
@@ -50,6 +50,8 @@ if(interactive()){
 }
 
 .env <- new.env()
+
+drat::addRepo("cloudyr", "http://cloudyr.github.io/drat") #cloudyr repository made available 
 
 
 .env$unrowname <- function(x) {
